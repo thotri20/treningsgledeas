@@ -18,10 +18,10 @@ export default async function Home() {
           <p className="text-xl mb-6">
             Opplev den ultimate trenings opplevelsen i dag
           </p>{" "}
-         <Link href="plans">
-          <button className="bg-white text-teal-400 font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-gray-100 transition">
-            Kom Igang{" "}
-          </button>{" "}
+          <Link href="plans">
+            <button className="bg-white text-teal-400 font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-gray-100 transition">
+              Kom Igang{" "}
+            </button>{" "}
           </Link>
         </section>
         {/* Features */}{" "}
@@ -69,12 +69,12 @@ export default async function Home() {
               {
                 name: "Anna",
                 quote:
-                  "This program changed my life. I feel stronger and more confident!",
+                  "Fint og moderne treningsenter med flott utstyr",
               },
               {
                 name: "Lars",
                 quote:
-                  "The coaches are amazing and the workouts are fun and effective.",
+                  "Hyggelige trenere som virkelig vet faget",
               },
             ].map((t, i) => (
               <div key={i} className="bg-gray-100 p-6 rounded-lg shadow-sm">
@@ -84,10 +84,51 @@ export default async function Home() {
             ))}{" "}
           </div>{" "}
         </section>
+        {/* Employee Section */}
+        <section className="bg-gray-50 py-16 px-6">
+          <h2 className="text-3xl text-purple-800 font-bold text-center mb-12">
+            Møt våre annsatte
+          </h2>
+          <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Emma Johnson",
+                role: "Hoved PT",
+                image: "https://randomuser.me/api/portraits/women/44.jpg",
+              },
+              {
+                name: "Jonas Larsen",
+                role: "Nærings Spesialist",
+                image: "https://randomuser.me/api/portraits/men/32.jpg",
+              },
+              {
+                name: "Sofie Martinsen",
+                role: "Yoga Instruktør",
+                image: "https://randomuser.me/api/portraits/women/68.jpg",
+              },
+            ].map((employee, i) => (
+              <div
+                key={i}
+                className="bg-white p-6 rounded-lg shadow-md text-center"
+              >
+                <img
+                  src={employee.image}
+                  alt={employee.name}
+                  className="w-24 h-24 mx-auto mb-4 object-cover"
+                />
+                <h3 className="text-xl font-semibold">{employee.name}</h3>
+                <p className="text-gray-600">{employee.role}</p>
+              </div>
+            ))}
+          </div>
+        </section>
         {/* Footer */}{" "}
         <footer className="bg-gray-800 text-white py-8 text-center">
           {" "}
-          <p>&copy; {new Date().getFullYear()} Treningsglede AS. All rights reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()} Treningsglede AS. All rights
+            reserved.
+          </p>
         </footer>{" "}
       </div>
     </div>
