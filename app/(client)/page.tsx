@@ -1,37 +1,29 @@
-import Image from "next/image";
-import { homepagequery } from "@/query/homepage.query";
-import { sanityFetch } from "@/sanity/lib/live";
 import Link from "next/link";
+import Image from "next/image";
 
 export default async function Home() {
-  const data = await sanityFetch({
-    query: homepagequery,
-  });
   return (
     <div>
-      {" "}
       <div className="bg-gray-50 text-gray-800">
-        {/* Hero Section */}{" "}
+        {/* Hero Section */}
         <section className="bg-gradient-to-r from-purple-400 to-purple-800 text-white py-20 px-6 text-center">
-          {" "}
-          <h1 className="text-5xl font-bold mb-4">Ekte Treningsglede</h1>{" "}
+          <h1 className="text-5xl font-bold mb-4">Ekte Treningsglede</h1>
           <p className="text-xl mb-6">
             Opplev den ultimate trenings opplevelsen i dag
-          </p>{" "}
+          </p>
           <Link href="plans">
             <button className="bg-white text-teal-400 font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-gray-100 transition">
-              Kom Igang{" "}
-            </button>{" "}
+              Kom Igang
+            </button>
           </Link>
         </section>
-        {/* Features */}{" "}
+
+        {/* Features */}
         <section className="py-16 px-6 max-w-6xl mx-auto">
-          {" "}
           <h2 className="text-3xl font-bold text-center text-purple-800 mb-12">
             Hvorfor Velge Oss
-          </h2>{" "}
+          </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {" "}
             {[
               {
                 title: "Moderne Treningsenter",
@@ -50,44 +42,43 @@ export default async function Home() {
                 key={i}
                 className="bg-white p-6 rounded-lg shadow-md text-center"
               >
-                {" "}
                 <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p>{feature.desc}</p>{" "}
+                <p>{feature.desc}</p>
               </div>
-            ))}{" "}
-          </div>{" "}
+            ))}
+          </div>
         </section>
-        {/* Testimonials */}{" "}
+
+        {/* Testimonials */}
         <section className="bg-white py-16 px-6">
-          {" "}
           <h2 className="text-3xl text-purple-800 font-bold text-center mb-12">
             Hva Sier Våre Medlemmer
-          </h2>{" "}
+          </h2>
           <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
-            {" "}
             {[
               {
                 name: "Anna",
                 quote:
-                  "Fint og moderne treningsenter med flott utstyr",
+                  "&quot;Fint og moderne treningsenter med flott utstyr&quot;",
               },
               {
                 name: "Lars",
                 quote:
-                  "Hyggelige trenere som virkelig vet faget",
+                  "&quot;Hyggelige trenere som virkelig vet faget&quot;",
               },
             ].map((t, i) => (
               <div key={i} className="bg-gray-100 p-6 rounded-lg shadow-sm">
-                <p className="italic">"{t.quote}"</p>
-                <p className="mt-4 font-semibold">– {t.name}</p>{" "}
+                <p className="italic" dangerouslySetInnerHTML={{ __html: t.quote }} />
+                <p className="mt-4 font-semibold">{t.name}</p>
               </div>
-            ))}{" "}
-          </div>{" "}
+            ))}
+          </div>
         </section>
+
         {/* Employee Section */}
         <section className="bg-gray-50 py-16 px-6">
           <h2 className="text-3xl text-purple-800 font-bold text-center mb-12">
-            Møt våre annsatte
+            Møt våre ansatte
           </h2>
           <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
             {[
@@ -111,25 +102,28 @@ export default async function Home() {
                 key={i}
                 className="bg-white p-6 rounded-lg shadow-md text-center"
               >
-                <img
-                  src={employee.image}
-                  alt={employee.name}
-                  className="w-24 h-24 mx-auto mb-4 object-cover"
-                />
+                <div className="w-24 h-24 mx-auto mb-4 relative">
+                  <Image
+                    src={employee.image}
+                    alt={employee.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 <h3 className="text-xl font-semibold">{employee.name}</h3>
                 <p className="text-gray-600">{employee.role}</p>
               </div>
             ))}
           </div>
         </section>
-        {/* Footer */}{" "}
+
+        {/* Footer */}
         <footer className="bg-gray-800 text-white py-8 text-center">
-          {" "}
           <p>
             &copy; {new Date().getFullYear()} Treningsglede AS. All rights
             reserved.
           </p>
-        </footer>{" "}
+        </footer>
       </div>
     </div>
   );
