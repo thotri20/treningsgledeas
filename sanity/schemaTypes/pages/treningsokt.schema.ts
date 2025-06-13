@@ -1,4 +1,5 @@
 import { defineType } from "sanity";
+
 export const treningsokt = defineType({
   name: "treningsokt",
   title: "Treningsøkt",
@@ -40,4 +41,18 @@ export const treningsokt = defineType({
       title: "Vær",
     },
   ],
+  preview: {
+    select: {
+      title: "date",
+      subtitle: "time",
+    },
+    prepare({ title, subtitle }) {
+      return {
+        title: title
+          ? new Date(title).toLocaleDateString("no-NO")
+          : "Uten dato",
+        subtitle,
+      };
+    },
+  },
 });

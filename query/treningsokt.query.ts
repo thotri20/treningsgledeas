@@ -1,5 +1,5 @@
 export const allTreningsokterQuery = `
-  *[_type == "treningsokt"] | order(date asc) {
+  *[_type == "treningsokt" && date >= now()] | order(date asc) {
     _id,
     date,
     time,
