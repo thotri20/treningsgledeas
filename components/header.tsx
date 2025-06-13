@@ -20,12 +20,12 @@ export default function Header() {
         <div className="flex items-center space-x-4">
           <SignedOut>
             <SignInButton>
-              <button className="bg-white text-purple-800 px-4 py-2 rounded hover:bg-green-600 transition">
+              <button className="bg-white text-purple-800 px-4 py-2 rounded hover:bg-teal-400 transition">
                 Logg Inn
               </button>
             </SignInButton>
             <SignUpButton>
-              <button className="bg-white text-purple-800 px-4 py-2 rounded hover:bg-blue-600 transition">
+              <button className="bg-white text-purple-800 px-4 py-2 rounded hover:bg-teal-400 transition">
                 Bli Medlem
               </button>
             </SignUpButton>

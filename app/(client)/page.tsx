@@ -5,7 +5,7 @@ export default async function Home() {
   return (
     <div>
       <div className="bg-gray-50 text-gray-800">
-        {/* Hero Section */}
+
         <section className="bg-gradient-to-r from-purple-400 to-purple-800 text-white py-20 px-6 text-center">
           <h1 className="text-5xl font-bold mb-4">Ekte Treningsglede</h1>
           <p className="text-xl mb-6">
@@ -18,7 +18,6 @@ export default async function Home() {
           </Link>
         </section>
 
-        {/* Features */}
         <section className="py-16 px-6 max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center text-purple-800 mb-12">
             Hvorfor Velge Oss
@@ -49,7 +48,6 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* Testimonials */}
         <section className="bg-white py-16 px-6">
           <h2 className="text-3xl text-purple-800 font-bold text-center mb-12">
             Hva Sier Våre Medlemmer
@@ -75,7 +73,6 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* Employee Section */}
         <section className="bg-gray-50 py-16 px-6">
           <h2 className="text-3xl text-purple-800 font-bold text-center mb-12">
             Møt våre ansatte
@@ -117,7 +114,6 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* Footer */}
         <footer className="bg-gray-800 text-white py-8 text-center">
           <p>
             &copy; {new Date().getFullYear()} Treningsglede AS. All rights
