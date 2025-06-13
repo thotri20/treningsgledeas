@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 import { TreningsoktType } from "@/types/treningsokt.types";
 
@@ -10,27 +10,40 @@ type Props = {
 export default function TreningsoktView({ session }: Props) {
   const { isSignedIn } = useUser();
   const [signedUp, setSignedUp] = useState(false);
-  const [availableSpots, setAvailableSpots] = useState(session.availableSpots);
   const [loading, setLoading] = useState(false);
+  const [availableSpots, setAvailableSpots] = useState(session.availableSpots);
 
-const handleSignup = async () => {
-  setLoading(true);
-  try {
-    const res = await fetch("/api/treningsokt", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sessionId: session._id, action: signedUp ? "leave" : "join" }),
-    });
-    const data = await res.json();
-    console.log("API response:", data);
-    if (res.ok) {
-      setSignedUp(!signedUp);
-      setAvailableSpots((prev) => prev + (signedUp ? 1 : -1));
+  useEffect(() => {
+    const key = `treningsokt_${session._id}_signedUp`;
+    const stored = localStorage.getItem(key);
+    if (stored) setSignedUp(JSON.parse(stored));
+  }, [session._id]);
+
+  // Update availableSpots if session prop changes (e.g. after page reload)
+  useEffect(() => {
+    setAvailableSpots(session.availableSpots);
+  }, [session.availableSpots]);
+
+  const handleSignup = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/treningsokt", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId: session._id, action: signedUp ? "leave" : "join" }),
+      });
+      await res.json();
+      if (res.ok) {
+        setSignedUp(!signedUp);
+        // Update availableSpots locally for instant feedback
+        setAvailableSpots((prev) => prev + (signedUp ? 1 : -1));
+        const key = `treningsokt_${session._id}_signedUp`;
+        localStorage.setItem(key, JSON.stringify(!signedUp));
+      }
+    } finally {
+      setLoading(false);
     }
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   return (
     <div className="shadow-md rounded-lg p-4 mb-4">
